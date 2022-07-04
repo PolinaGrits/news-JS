@@ -1,6 +1,8 @@
+import { ISource } from '../sources/sources';
+
 import './news.css';
 
-interface INews {
+export interface INews {
   author: string,
   content: string,
   description: string,
@@ -8,10 +10,7 @@ interface INews {
   title: string,
   url: string,
   urlToImage: string,
-  source:{
-    id: string,
-    name: string
-  }
+  source: ISource
 }
 
 
@@ -51,5 +50,4 @@ class News {
   }
 }
 
-export {INews};
 export default News;

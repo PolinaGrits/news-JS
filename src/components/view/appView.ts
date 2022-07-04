@@ -1,26 +1,12 @@
 import News from './news/news';
 import Sources from './sources/sources';
 import { ISources } from '../controller/loader';
+import { INews } from './news/news';
 
-interface IEverything{
+export interface IEverything{
   status: string,
   totalResults: number,
-  articles: [
-    {
-      source: 
-      {
-        id: string,
-        name: string
-      },
-      author: string,
-      title: string,
-      description: string,
-      url: string,
-      urlToImage: string,
-      publishedAt: string,
-      content: string
-    }
-  ]
+  articles?: INews[]
 }
 
 export class AppView {
@@ -39,7 +25,7 @@ export class AppView {
 
   drawSources(data: ISources) {
     const values = data?.sources ? data?.sources : [];
-    this.sources.draw(values);console.log(data)
+    this.sources.draw(values);
   }
 }
 
