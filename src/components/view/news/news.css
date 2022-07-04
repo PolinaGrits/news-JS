@@ -121,7 +121,7 @@
     left: 0%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
     .news__item {
         flex-direction: row;
         max-width: 700px;
@@ -163,4 +163,11 @@
     .news__item.alt .news__meta-details {
         padding-left: 25px;
     }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .news__meta{
+        display: none;
+    }
+
 }
