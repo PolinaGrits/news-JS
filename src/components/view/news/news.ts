@@ -14,25 +14,9 @@ interface INews {
   }
 }
 
-interface IArticles{
-  source: 
-  {
-    id: string,
-    name: string
-  },
-  author: string,
-  title: string,
-  description: string,
-  url: string,
-  urlToImage: string,
-  publishedAt: string,
-  content: string
-}
-
-
 
 class News {
-  draw(data: Array<IArticles>) {
+  draw(data: Array<INews>) {
     const news = data.length >= 10 ? data.filter((_item: INews, idx: number) => idx < 10) : data;
     
     const fragment = document.createDocumentFragment() as DocumentFragment;
@@ -67,4 +51,5 @@ class News {
   }
 }
 
+export {INews};
 export default News;
