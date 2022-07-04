@@ -1,4 +1,4 @@
-interface ISources {
+interface ISources { 
   status: string,
   sources: [
 		{
@@ -13,7 +13,7 @@ interface ISources {
 	];    
 }
 
-interface IOptions {
+interface IOptions { 
 	[key: string]: string
 };
 
@@ -32,9 +32,9 @@ class Loader {
 			console.error('No callback for GET response');
 		}
 	) {
-		
+
 		this.load('GET', endpoint, callback, options);
-		
+
 	}
 
 	errorHandler(res: Response) {
@@ -43,7 +43,6 @@ class Loader {
 				console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
 			throw Error(res.statusText);
 		}
-		console.log(res)
 		return res;
 	}
 
