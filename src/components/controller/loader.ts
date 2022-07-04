@@ -1,6 +1,6 @@
-interface ISources { 
+interface ISources { //это у меня был эндпоинт
   status: string,
-  sources: [
+  sources?: [
 		{
 			id: string,
 			name: string,
@@ -13,13 +13,22 @@ interface ISources {
 	];    
 }
 
-interface IOptions { 
+interface IOptions { // это у меня опшинс
 	[key: string]: string
 };
+
+export enum APIEndpoints { // теперь это у меня эндпоинт
+		sources = 'sources',
+		everything = 'everything',
+}
+
+export type Callback<T> = { (data: T): void };
 
 class Loader {
 	options: IOptions;
 	baseLink: string;
+  static sources: APIEndpoints;
+  static everything: APIEndpoints;
 
 	constructor(baseLink: string, options: IOptions) {
 		this.baseLink = baseLink;
@@ -27,7 +36,7 @@ class Loader {
 	}
 
 	getResp(
-		{ endpoint, options = {} }: { endpoint: ISources; options: IOptions },
+		{ endpoint, options = {} }: { endpoint: APIEndpoints; options?: IOptions },
 		callback = () : void => {
 			console.error('No callback for GET response');
 		}
@@ -46,7 +55,7 @@ class Loader {
 		return res;
 	}
 
-	makeUrl(options: IOptions, endpoint: ISources): string {
+	makeUrl(options: IOptions, endpoint: APIEndpoints): string {
 		const urlOptions: IOptions = { ...this.options, ...options };
 		let url: string;
 		url = `${this.baseLink}${endpoint}?`;
@@ -57,7 +66,7 @@ class Loader {
 		return url.slice(0, -1);
 	}
 
-	load<T>(method: string, endpoint: ISources, callback: (data: T) => void, options = {}) {
+	load<T>(method: string, endpoint: APIEndpoints, callback: Callback<T>, options = {}) {
 		fetch(this.makeUrl(options, endpoint), { method })
 			.then(this.errorHandler)
 			.then((res) => res.json())
