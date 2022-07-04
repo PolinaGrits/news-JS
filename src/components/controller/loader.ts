@@ -66,4 +66,6 @@ class Loader {
 	}
 }
 
+
+export { ISources }
 export default Loader;

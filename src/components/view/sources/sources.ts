@@ -1,20 +1,15 @@
 import './sources.css';
 
 interface ISource{
-  category: string,
-  country: string,
-  description: string,
   id: string,
-  language: string
-  name: string,
-  url: string
+  name: string
 }
 
 class Sources {
   draw(data: Array<ISource>) {
     const fragment = document.createDocumentFragment() as DocumentFragment;
     const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
-
+    
     data.forEach((item: ISource) => {
       const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
 
@@ -28,4 +23,6 @@ class Sources {
   }
 }
 
+
+export {ISource}
 export default Sources;
